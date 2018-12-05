@@ -18,5 +18,4 @@ services:
       - default
 networks:
   default: 
-    external: true
 
