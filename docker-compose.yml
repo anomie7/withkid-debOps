@@ -9,7 +9,7 @@ services:
     networks:
       - default
   auth-server:
-    image: minudev1212/withkid-auth-server:0.2
+    image: minudev1212/withkid-auth-server:0.3
     ports: 
       - "8090:8082"
     expose: 
