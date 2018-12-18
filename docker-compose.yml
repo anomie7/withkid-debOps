@@ -1,11 +1,7 @@
 version: "3"
 services:
   resource-server:
-    build: 
-      context: ./resource-server/
-      args: 
-        JAR_FILE: ./withkid-resource-server.jar
-    image: minudev1212/withkid-resource-server:0.6
+    image: minudev1212/withkid-resource-server:0.6.1
     ports: 
       - "8081:8081"
     expose:
@@ -13,11 +9,7 @@ services:
     networks:
       - withkid_bridge
   auth-server:
-    build: 
-      context: ./auth-server/
-      args:
-        JAR_FILE: ./withkid-auth-server.jar
-    image: minudev1212/withkid-auth-server:0.4
+    image: minudev1212/withkid-auth-server:0.4.1
     ports: 
       - "8090:8082"
     expose: 
