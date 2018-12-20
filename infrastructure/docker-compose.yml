@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: mariadb
+    container_name: withkid-rdb
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: with-kid
+    ports:
+      - "3306:3306"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/mysql/data:/var/lib/mysql
+    restart: always
+    networks:
+      - withkid-bridge  
+      - db-bridge
+
+  mysql-jobs:
+    build: ./mysql-mariadb/custom-images/alpine-with-jobs
+    container_name: withkid_rdb-jobs
+    user: root
+    environment:
+      MYSQL_CONTAINER_NAME: withkid-rdb
+      MYSQL_DATABASE: with-kid
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/mysql/backup:/opt/mysql/backup
+    command: crond -f -d 8
+    restart: always
+    networks:
+      - db-bridge
+
+  redis:
+    image: redis
+    container_name: withkid-redis
+    ports:
+      - "3679:3679"
+    volumes:
+      - /opt/redis/data:/data
+    restart: always
+    networks: 
+      - withkid-bridge
+
+  nginx:
+    build:
+      context: ./image-storage/
+    ports:
+      - "37772:80"
+    volumes:
+      - /usr/share/nginx:/usr/share/nginx/imgFolder
+    networks: 
+      - withkid-bridge
+networks:
+  withkid-bridge: 
+    external: true
+  db-bridge:
+    external: true
