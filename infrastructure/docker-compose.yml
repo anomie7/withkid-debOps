@@ -16,23 +16,6 @@ services:
     restart: always
     networks:
       - withkid-bridge  
-      - db-bridge
-
-  mysql-jobs:
-    build: ./mysql-mariadb/custom-images/alpine-with-jobs
-    container_name: withkid_rdb-jobs
-    user: root
-    environment:
-      MYSQL_CONTAINER_NAME: withkid-rdb
-      MYSQL_DATABASE: with-kid
-      MYSQL_ROOT_PASSWORD: 1234
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /opt/mysql/backup:/opt/mysql/backup
-    command: crond -f -d 8
-    restart: always
-    networks:
-      - db-bridge
 
   redis:
     image: redis
@@ -56,6 +39,4 @@ services:
       - withkid-bridge
 networks:
   withkid-bridge: 
-    external: true
-  db-bridge:
     external: true
