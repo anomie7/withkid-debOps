@@ -6,10 +6,10 @@ services:
     image: minudev1212/withkid-resource-server:0.6.3
     deploy:
       replicas: 1
-      resources: 
-        limits:
-          cpus: "0.1"
-          memory: 200M
+      # resources: 
+      #   limits:
+      #     cpus: "0.1"
+      #     memory: 200M
       restart_policy:
         condition: on-failure
     depends_on:
@@ -23,10 +23,10 @@ services:
     image: minudev1212/withkid-auth-server:0.4.2
     deploy:
       replicas: 1
-      resources: 
-        limits:
-          cpus: "0.1"
-          memory: 200M
+      # resources: 
+      #   limits:
+      #     cpus: "0.1"
+      #     memory: 200M
       restart_policy:
         condition: on-failure
     depends_on:
