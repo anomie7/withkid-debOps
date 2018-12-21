@@ -4,7 +4,7 @@ services:
 
   mysql:
     image: mariadb
-    container_name: withkid-rdb
+    # container_name: withkid-rdb
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: with-kid
@@ -19,7 +19,7 @@ services:
 
   redis:
     image: redis
-    container_name: withkid-redis
+    # container_name: withkid-redis
     ports:
       - "3679:3679"
     volumes:
