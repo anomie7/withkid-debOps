@@ -13,7 +13,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /opt/mysql/data:/var/lib/mysql
-    restart: always
     networks:
       - withkid-bridge  
 
@@ -24,13 +23,11 @@ services:
       - "3679:3679"
     volumes:
       - /opt/redis/data:/data
-    restart: always
     networks: 
       - withkid-bridge
 
   nginx:
-    build:
-      context: ./image-storage/
+    image: minudev1212/withkid-webserver:0.1
     ports:
       - "37772:80"
     volumes:
