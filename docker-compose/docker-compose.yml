@@ -1,10 +1,34 @@
-version: '3'
+version: "3"
 
 services:
 
+  resource_server:
+    image: minudev1212/withkid-resource-server:0.6.3
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    ports: 
+      - "8081:8081"
+    expose:
+      - "8081"
+    networks:
+      - overlay
+  auth_server:
+    image: minudev1212/withkid-auth-server:0.4.2
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    ports: 
+      - "8090:8082"
+    expose: 
+      - "8082"
+    networks:
+      - overlay
+
   rdb:
     image: mariadb
-    # container_name: withkid-rd
     deploy:
       replicas: 1
       restart_policy:
@@ -17,7 +41,7 @@ services:
     volumes:
       - /opt/mysql/data:/var/lib/mysql
     networks:
-      - withkid-bridge  
+      - overlay  
 
   redis:
     image: redis
@@ -25,13 +49,12 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-    # container_name: withkid-redis
     ports:
       - "3679:3679"
     volumes:
       - /opt/redis/data:/data
     networks: 
-      - withkid-bridge
+      - overlay
 
   nginx:
     image: minudev1212/withkid-webserver:0.1
@@ -44,7 +67,8 @@ services:
     volumes:
       - /usr/share/nginx:/usr/share/nginx/imgFolder
     networks: 
-      - withkid-bridge
+      - overlay
+
 networks:
-  withkid-bridge: 
-    external: true
+  overlay: 
+    external: false

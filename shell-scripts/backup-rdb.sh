@@ -6,8 +6,7 @@ BACKUP_FOLDER="/opt/mysql/backup"
 
 FILE=$BACKUP_FOLDER/backup-$DATE.sql.gz
 
-docker exec -u root $CONTAINER /usr/bin/mysqldump -u root --password=1234 --single-transaction $DATABASE >  | \
-$GZIP -9 $FILE
+docker exec -u root $CONTAINER /usr/bin/mysqldump -u root --password=1234 --single-transaction $DATABASE | $GZIP -9 > $FILE
 
 # Backup
 # docker exec CONTAINER /usr/bin/mysqldump -u root --password=root DATABASE > backup.sql
