@@ -40,6 +40,8 @@ services:
     image: mariadb
     deploy:
       replicas: 1
+      placement:
+        constraints: [node.role == manager, node.hostname == lightsail1]
       restart_policy:
         condition: on-failure
     environment:
@@ -56,6 +58,8 @@ services:
     image: redis
     deploy:
       replicas: 1
+      placement:
+        constraints: [node.role == manager, node.hostname == lightsail1]
       restart_policy:
         condition: on-failure
     ports:
@@ -69,6 +73,8 @@ services:
     image: minudev1212/withkid-webserver:0.1
     deploy:
       replicas: 1
+      placement:
+        constraints: [node.role == manager, node.hostname == lightsail1]
       restart_policy:
         condition: on-failure
     ports:
