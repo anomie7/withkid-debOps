@@ -1,12 +1,11 @@
 version: "3"
 
 services:
-
   resource_server:
     image: minudev1212/withkid-resource-server:0.6.3
     deploy:
       replicas: 1
-      # resources: 
+      # resources:
       #   limits:
       #     cpus: "0.1"
       #     memory: 200M
@@ -15,7 +14,7 @@ services:
     depends_on:
       - rdb
       - redis
-    ports: 
+    ports:
       - "8081:8081"
     networks:
       - overlay
@@ -23,7 +22,7 @@ services:
     image: minudev1212/withkid-auth-server:0.4.2
     deploy:
       replicas: 1
-      # resources: 
+      # resources:
       #   limits:
       #     cpus: "0.1"
       #     memory: 200M
@@ -31,7 +30,7 @@ services:
         condition: on-failure
     depends_on:
       - rdb
-    ports: 
+    ports:
       - "8090:8082"
     networks:
       - overlay
@@ -52,7 +51,7 @@ services:
     volumes:
       - /opt/mysql/data:/var/lib/mysql
     networks:
-      - overlay  
+      - overlay
 
   redis:
     image: redis
@@ -66,7 +65,7 @@ services:
       - "3679:3679"
     volumes:
       - /opt/redis/data:/data
-    networks: 
+    networks:
       - overlay
 
   nginx:
@@ -78,15 +77,14 @@ services:
       restart_policy:
         condition: on-failure
     ports:
-      - "37772:80"
+      - "37772:800"
       - "80:80"
     volumes:
       - /usr/share/nginx/imgFolder:/usr/share/nginx/imgFolder
       - /usr/share/nginx/spa-mat:/usr/share/nginx/spa-mat
-      - /etc/letsencrypt/live/withkid.tk:/usr/share/nginx/letsencrypt/live/withkid.tk
-    networks: 
+    networks:
       - overlay
 
 networks:
-  overlay: 
+  overlay:
     external: false
