@@ -1,6 +1,6 @@
 FROM nginx:mainline-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
-VOLUME [ "/usr/share/nginx/imgFolder", "/usr/share/nginx/spa-mat", "/usr/share/nginx/letsencrypt/live/withkid.tk/" ]
+VOLUME [ "/usr/share/nginx/imgFolder", "/usr/share/nginx/spa-mat" ]
 #설정파일 경로  /etc/nginx/nginx.conf
 
 #컨테이너의 볼륨의 경로 /usr/share/nginx
