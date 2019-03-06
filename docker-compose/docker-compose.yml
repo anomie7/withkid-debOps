@@ -79,6 +79,7 @@ services:
       - "37772:800"
       - "80:80"
       - "8090:8090"
+      - "443:443"
     volumes:
       - /usr/share/nginx/imgFolder:/usr/share/nginx/imgFolder
       - /usr/share/nginx/spa-mat:/usr/share/nginx/spa-mat
