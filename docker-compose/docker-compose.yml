@@ -14,8 +14,7 @@ services:
     depends_on:
       - rdb
       - redis
-    ports:
-      - "8081:8081"
+      - nginx
     networks:
       - overlay
   auth_server:
@@ -79,6 +78,7 @@ services:
       - "37772:800"
       - "80:80"
       - "8090:8090"
+      - "8081:8081"
       - "443:443"
     volumes:
       - /usr/share/nginx/imgFolder:/usr/share/nginx/imgFolder
