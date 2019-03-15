@@ -24,7 +24,21 @@ services:
       - nginx
     networks:
       - overlay
-
+  ulog_server:
+    images: minudev1212/withkid-ulog-server:0.0.1
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8083:8083"
+    volumes:
+      - /usr/share/firebase:/usr/share/firebase
+    depends_on:
+      - nginx
+      - auth_server
+    networks:
+      - overlay
   rdb:
     image: mariadb
     deploy:
