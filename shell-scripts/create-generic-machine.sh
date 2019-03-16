@@ -7,4 +7,5 @@ echo "default port is 22, please port open!"
 
 docker-machine create -d generic --generic-ip-address $IPADDR --generic-ssh-user $USER $NAME 
 
+docker-machine provision $NAME
 docker-machine ssh $NAME
