@@ -73,7 +73,7 @@ services:
       - overlay
 
   nginx:
-    image: minudev1212/withkid-webserver:0.4.7
+    image: minudev1212/withkid-webserver:0.4.6
     deploy:
       replicas: 1
       placement:
