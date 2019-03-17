@@ -73,7 +73,7 @@ services:
       - overlay
 
   nginx:
-    image: minudev1212/withkid-webserver:0.4.6
+    image: minudev1212/withkid-webserver:0.4.7
     deploy:
       replicas: 1
       placement:
@@ -85,6 +85,7 @@ services:
       - "80:80"
       - "8090:8090"
       - "8081:8081"
+      - "8083:8083"
       - "443:443"
     volumes:
       - /usr/share/nginx/imgFolder:/usr/share/nginx/imgFolder
